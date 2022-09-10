@@ -2,8 +2,6 @@ using System;
 
 public class ProblemA {
   public static void solve() {
-    // there are better methods of solving this
-    
     string input = Console.ReadLine();
     if(input.Length % 2 != 0) {
       Console.WriteLine("NO");
