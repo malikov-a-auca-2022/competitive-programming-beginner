@@ -2,7 +2,7 @@ using System;
 
 public class ProblemC
 {
-    static void solve()
+    static void Main ()
     {
         string input = Console.ReadLine();
         int number = int.Parse(input);
@@ -38,14 +38,9 @@ public class ProblemC
         {
             Console.WriteLine("zounds");
         }
-        else
+        else if (number >= 1000 && number <= 2000)
         {
             Console.WriteLine("legion");
         }
-        Console.ReadKey();
-    }
-    static void Main ()
-    {
-        solve();
     }
 }
