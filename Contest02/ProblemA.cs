@@ -8,7 +8,7 @@ public class ProblemA {
     if (number == 2) { return true; }
     if (number % 2 == 0) { return false; }
     
-    for(int i = 3; i < Math.Sqrt((double)number); i += 2) {
+    for(int i = 3; i < number; i++) {
       if (number % i == 0) {
         return false;
       }
@@ -17,9 +17,8 @@ public class ProblemA {
   }
   
   static void Main() {
-    string input = Console.ReadLine();
     int numberOfTestCases = 1;
-    int.TryParse(input, out numberOfTestCases);
+    numberOfTestCases = int.Parse(Console.ReadLine());
 
     while(numberOfTestCases > 0) {
       if(isPrime()) {
