@@ -3,16 +3,19 @@ using System;
 class ProblemB {
 
   public static long sumOfDivisors(int number) {
-    long result = 0;
-    for(double i = 1.0; i <= Math.Sqrt(number); i++) {
-      if(number % i == 0) {
-        if(number / i == i || i == 1) {
-          result += Convert.ToInt64(Math.Round(i));
-          continue;
+    if(number == 1) {
+        return 0;
+    }
+    long result = 1L;
+    for(int i = 2; i <= Math.Sqrt(number); i++) {
+        if(number % i == 0) {
+            if(number / i == i) {
+                result += i;
+            } else {
+                result += i;
+                result += number / i;
+            }
         }
-        result += Convert.ToInt64(Math.Round(i));
-        result += Convert.ToInt64(Math.Round(number / i));
-      }
     }
     return result;
   }
