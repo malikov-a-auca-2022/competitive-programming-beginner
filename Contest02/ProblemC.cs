@@ -1,7 +1,7 @@
 // First of all i need to find number of prime numbers less or equal to N. and then calculate N/logN function. and then find error percentage
 
 using System;
-public class HelloWorld {
+public class ProblemC {
   
   public static int NumberOfPrimes(int number) {
     if(number == 2) {
