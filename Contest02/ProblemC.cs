@@ -1,32 +1,28 @@
-// First of all i need to find number of prime numbers less or equal to N. and then calculate N/logN function. and then find error percentage
-
 using System;
 public class ProblemC {
   
-  public static int NumberOfPrimes(int number) {
+  public static int EratosthenesSieve(int number) {
     if(number == 2) {
       return 1;
     }
-    int result = 1;
-    for(int i = 3; i <= number; i += 2) { // +=2 because all even numbers are composite and we can just skip them 
-      if(isPrime(i)) {
-        result++;
+    bool[] ListOfCompositeNumbers = new bool[number + 1];
+    ListOfCompositeNumbers[0] = true;
+    ListOfCompositeNumbers[1] = true;
+
+    for(int i = 2; i <= Math.Sqrt(ListOfCompositeNumbers.Length); i++) {
+      if(ListOfCompositeNumbers[i] == false) {
+        for(int j = i * 2; j < ListOfCompositeNumbers.Length; j += i) {
+          ListOfCompositeNumbers[j] = true;
+        } 
       }
     }
-    return result;
-  }
-  
-  public static bool isPrime(int number) {
-    if (number == 1) { return false; }
-    if (number == 2) { return true; }
-    if (number % 2 == 0) { return false; }
-    
-    for(int i = 3; i <= Math.Sqrt(number); i += 2) { //+=2 because all even numbers are divisible by 2, but we checked for it already
-      if (number % i == 0) {
-        return false;
+    int numberOfPrimeNumbers = 0;
+    for(int i = 0; i < ListOfCompositeNumbers.Length; i++) {
+      if(ListOfCompositeNumbers[i] == false) {
+        numberOfPrimeNumbers++;
       }
     }
-    return true;
+    return numberOfPrimeNumbers;
   }
   
   public static double primeNumberTheorem(int number) {
@@ -44,7 +40,7 @@ public class ProblemC {
       if(input == 0) {
         break;
       } else {
-        int actualValue = NumberOfPrimes(input);
+        int actualValue = EratosthenesSieve(input);
         double approximateValue = primeNumberTheorem(input);
         Console.WriteLine(errorPercent(actualValue, approximateValue));
       }
