@@ -35,24 +35,19 @@ public class HelloWorld {
   
   public static double errorPercent(int actualValue, double approximateValue) {
     double result = Math.Abs((actualValue - approximateValue)) / actualValue;
-    return Math.Round(result, 1);
+    return Math.Round(result * 100, 1);
   }
   
   public static void Main() {
-    int numberOfTestCases = 1;
-    numberOfTestCases = int.Parse(Console.ReadLine());
-  
-    while(numberOfTestCases > 0) {
+    do {
       int input = int.Parse(Console.ReadLine());
-      if(input != 0) {
+      if(input == 0) {
+        break;
+      } else {
         int actualValue = NumberOfPrimes(input);
         double approximateValue = primeNumberTheorem(input);
         Console.WriteLine(errorPercent(actualValue, approximateValue));
-        numberOfTestCases--;
-      } else {
-        break;
       }
-    }
+    } while(true);
   }
-  
 }
