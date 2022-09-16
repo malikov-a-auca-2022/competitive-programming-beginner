@@ -9,9 +9,9 @@ public class ProblemC {
     ListOfCompositeNumbers[0] = true;
     ListOfCompositeNumbers[1] = true;
 
-    for(int i = 2; i <= Math.Sqrt(ListOfCompositeNumbers.Length); i++) {
+    for(int i = 2; i * i <= ListOfCompositeNumbers.Length; i++) {
       if(ListOfCompositeNumbers[i] == false) {
-        for(int j = i * 2; j < ListOfCompositeNumbers.Length; j += i) {
+        for(int j = i * i; j < ListOfCompositeNumbers.Length; j += i) {
           ListOfCompositeNumbers[j] = true;
         } 
       }
