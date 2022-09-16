@@ -1,5 +1,5 @@
 using System;
-public class ProblemD {
+public class HelloWorld {
   
   public static void printPrimesBetween() {
     string input = Console.ReadLine();
@@ -32,6 +32,7 @@ public class ProblemD {
 
     while(numberOfTestCases > 0) {
       printPrimesBetween();
+      Console.WriteLine();
       numberOfTestCases--;
     }
   }
