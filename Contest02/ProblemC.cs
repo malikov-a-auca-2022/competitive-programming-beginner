@@ -1,4 +1,20 @@
 using System;
+using System.Runtime.InteropServices;
+internal class NativeMethods
+{
+    [DllImport("kernel32.dll", SetLastError = true)]
+    internal static extern bool SetConsoleMode(IntPtr hConsoleHandle, int mode);
+
+    [DllImport("kernel32.dll", SetLastError = true)]
+    internal static extern bool GetConsoleMode(IntPtr hConsoleHandle, out int mode);
+
+    [DllImport("kernel32.dll", SetLastError = true)]
+    internal static extern IntPtr GetStdHandle(int nStdHandle);
+
+    internal const int STD_INPUT_HANDLE = -10;
+    internal const int ENABLE_ECHO_INPUT = 0x0004;
+}
+
 public class ProblemC
 {
 
@@ -43,13 +59,18 @@ public class ProblemC
     public static double errorPercent(int actualValue, double approximateValue)
     {
         double result = Math.Abs((actualValue - approximateValue)) / actualValue;
-        return Math.Round(result * 100, 1);
+        return Math.Round(result * 100, 1, MidpointRounding.AwayFromZero);
     }
 
-    public static void Main()
+    public static int Main()
     {
         EratosthenesSieve();
         CalculateAmountOfPrimeNumbers();
+        var handle = NativeMethods.GetStdHandle(NativeMethods.STD_INPUT_HANDLE);
+        int mode;
+        NativeMethods.GetConsoleMode(handle, out mode);
+        mode &= ~NativeMethods.ENABLE_ECHO_INPUT; // disable flag
+        NativeMethods.SetConsoleMode(handle, mode);
         do
         {
             int input = int.Parse(Console.ReadLine());
@@ -64,5 +85,6 @@ public class ProblemC
                 Console.WriteLine(errorPercent(actualValue, approximateValue));
             }
         } while (true);
+        return 0;
     }
 }
