@@ -28,11 +28,11 @@ int main()
         }
     }
     
-    int countAllowedTemperatures [maxTemp + 1] = {0}; //its length is max temperature + 1
+    int allowedTemperatures [maxTemp + 1] = {0}; //its length is max temperature + 1
     
     for(int i = 0; i < numberOfRecipes; i++) { //count allowed temperatures
         for(int j = recipes[i][0]; j <= recipes[i][1]; j++) {
-            countAllowedTemperatures[j]++;
+            allowedTemperatures[j]++;
         }
     }
     
@@ -40,11 +40,10 @@ int main()
         int low; cin >> low;
         int high; cin >> high;
         int count = 0;
-        for(int j = low; j <= high; j++) {
-            if(countAllowedTemperatures[j] >= minToAllow) count++; 
+        for(int j = low; j <= high && j <= maxTemp; j++) {
+            if(allowedTemperatures[j] >= minToAllow) count++; 
         }
         cout << count << endl;
     }
-
     return 0;
 }
