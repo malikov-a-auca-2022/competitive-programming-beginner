@@ -29,10 +29,12 @@ int main()
     }
     
     int allowedTemperatures [maxTemp + 1] = {0}; //its length is max temperature + 1
+    bool isAllowed [maxTemp + 1] = {false};
     
     for(int i = 0; i < numberOfRecipes; i++) { //count allowed temperatures
         for(int j = recipes[i][0]; j <= recipes[i][1]; j++) {
-            allowedTemperatures[j]++;
+            if(!isAllowed[j]) allowedTemperatures[j]++; 
+            if(allowedTemperatures[j] >= minToAllow) isAllowed[j] = true;
         }
     }
     
@@ -41,7 +43,7 @@ int main()
         int high; cin >> high;
         int count = 0;
         for(int j = low; j <= high && j <= maxTemp; j++) {
-            if(allowedTemperatures[j] >= minToAllow) count++; 
+            if(isAllowed[j]) count++; 
         }
         cout << count << endl;
     }
