@@ -45,7 +45,7 @@ int main()
         for(int j = low; j <= high && j <= maxTemp; j++) {
             if(isAllowed[j]) count++; 
         }
-        cout << count << endl;
+        cout << count << '\n';
     }
     return 0;
 }
