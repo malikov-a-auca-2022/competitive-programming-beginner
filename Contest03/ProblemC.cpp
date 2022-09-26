@@ -38,7 +38,7 @@ void solve(){
             }
         }
     }
-    
+    cout << endl; 
     for(int i = 0; i < n; i++) {                      
         for(int j = 0; j < n; j++) {            
             cout << pref[i][j] << ' ';
@@ -46,14 +46,17 @@ void solve(){
         cout << endl;
     }
     
-    for(int i = size - 1; i >= 0; i--) {
+    for(int i = size - 1; i >= 0; i--) {                                //calculating result
         for(int j = 0; j < size; j++) {
             if(i == size - 1 && j == 0) {
-                res[i][j] = pref[i][j+m - 1] - pref[i-m][j-m];
+                res[i][j] = pref[i][j+m - 1] - pref[i-m][j+m - 1];
             } else if(i == size - 1) {
-                
+                res[i][j] = pref[i][j+m - 1] - pref[i-m][j+m - 1] - pref[i][j - 1] + pref[i + m][j - 1];
+            } else if(j == 0){
+                res[i][j] = pref[i][j+m - 1] - pref[i-m][j+m - 1];
+            } else {
+                res[i][j] = pref[i][j+m - 1] - pref[i][j - 1] - pref[i-m][j+m - 1] + pref[i-m][j - 1];
             }
-            res[i][j] = pref[i][j+m - 1] - pref[i][j] - pref[i-m][j - 1] + pref[i-m][j - 1];
         }
     }
     
