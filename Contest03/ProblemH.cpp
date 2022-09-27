@@ -1,13 +1,14 @@
-#include <bits/stdc++.h>
+#include <iostream>
+#include <cmath>
 
 using namespace std;
 void solve() {
-    int n, m;
+    unsigned long n, m;
     cin >> n; cin >> m;
     unsigned long rooms[n];
     unsigned long pref[n];
-    int lo = 0, hi = n - 1;
-    int mid;
+    long lo = 0, hi = n - 1;
+    long mid;
     
     for(int i = 0; i < n; i++) {
         cin >> rooms[i];
@@ -21,23 +22,23 @@ void solve() {
         while(true) {
             mid = (lo + hi) / 2;
             if(pref[mid] == b) {
-                cout << mid + 1 << " " << rooms[mid] << endl;
+                cout << mid + 1 << " " << rooms[mid] << '\n';
                 break; 
             }
             if(pref[mid + 1] > b && b > pref[mid]) {
-                cout << mid + 2 << " " << b - pref[mid] << endl;
+                cout << mid + 2 << " " << b - pref[mid] << '\n';
                 break;
             }
             if(pref[mid] > b && b > pref[mid - 1]) {
-                cout << mid + 1 << " " << rooms[mid] - pref[mid] + b << endl;
+                cout << mid + 1 << " " << rooms[mid] - pref[mid] + b << '\n';
                 break;
             }
             if(mid == lo) {
-                cout << mid + 1 << " " << b << endl;
+                cout << mid + 1 << " " << b << '\n';
                 break;
             }
             if(mid == hi) {
-                cout << mid + 1 << " " << rooms[mid] << endl;
+                cout << mid + 1 << " " << rooms[mid] << '\n';
                 break;
             }
             if(b > pref[mid]){
