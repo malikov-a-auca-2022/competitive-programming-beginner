@@ -1,16 +1,10 @@
 #include <bits/stdc++.h>
 
 using namespace std;
-
-int main()
-{
-    ios::sync_with_stdio(false);
-    cin.tie(0);
-    
+void solve() {
     int n, m;
     cin >> n; cin >> m;
-    unsigned long rooms[n]; 
-    rooms[n] = 0;
+    unsigned long rooms[n];
     unsigned long pref[n];
     int lo = 0, hi = n - 1;
     int mid;
@@ -21,7 +15,7 @@ int main()
     }
     
     for(int i = 0; i < m; i++) {        //ask question and answer
-        lo = 0, hi = n - 1;
+        hi = n - 1;
         mid = (lo + hi) / 2;
         unsigned long b; cin >> b;
         while(true) {
@@ -53,6 +47,13 @@ int main()
             }
         } 
     }
+}
+int main()
+{
+    ios::sync_with_stdio(false);
+    cin.tie(0);
     
+    solve();
+
     return 0;
 }
