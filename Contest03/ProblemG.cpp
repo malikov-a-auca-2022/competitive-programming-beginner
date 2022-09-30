@@ -19,10 +19,20 @@ int main() {
             prev = curr;
         }
     }
-    int max1, max2;
-    for(int i = 0; i < subseqs.size(); i++) {
-        if(i % 2 == 0) max1 = subseqs[i];
-        else max2 = subseqs[i];
+    int l = 0, ans = 0;
+    for(int i=1; i<subseqs.size(); i++){
+        if(subseqs[i] == subseqs[i-1]){
+            l = 2* subseqs[i];
+            ans = max(ans,l);
+        }
+        else if(subseqs[i] > subseqs[i-1]){
+            l = 2* subseqs[i-1];
+            ans = max(ans,l);
+        }
+        else{
+            l = 2* subseqs[i];
+            ans = max(ans,l);
+        }
     }
-    cout << min(max1, max2) * 2;
+    cout<<ans<<endl;
 }
