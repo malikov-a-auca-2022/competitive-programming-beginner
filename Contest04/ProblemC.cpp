@@ -3,8 +3,23 @@
 using namespace std;
 
 string alph = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-string exam = "ABCABC??FGHIJK???OPQR?TUVWXY?";
+string alph = "ABCDEFGHIJKLMNOPQRSTUVWXYZX";
+string ans2 = "ABABABBABCDEFGHIJKLMNABABABABAOPQRSTUVWXYABABABABAZ????????KLCSJB?????????Z";
+string exmp = "ABABABBAB????????????ABABABABA???????????ABABABABA?????????KLCSJB?????????Z";
+string cran = "ABABABBABAAAAAAAAAAAAABABABABAAAAAAAAAAAAABABABABADEFGHIMNOKLCSJBPQRTUVWXYZ";
 
+void solve2() {
+    bool isIncluded[26] = {false};
+    string s; cin >> s;
+    if(s.size() < 26) {
+        cout << "-1" << endl;
+    }
+    int l = 0, r = 25;
+    string s2;
+    for(l, r; l < s.size() - 26 + 1; l++) {
+        
+    }
+}
 void solve() {
     bool isIncluded[26] = {false};
     string s; cin >> s;
@@ -15,8 +30,8 @@ void solve() {
     int l = 0, r = 0;
     for(r, l; r < s.size(); r++) {
         for(int i = 0; i < 26; i++) {
-            if(s[r] == alph[i] && isIncluded[i]) { //this part is wrong
-                l = r;
+            if(s[r] == alph[i] && isIncluded[i]) { //idk this method passes some testcases
+                l++;
                 break;
             }
             if(!isIncluded[i] && (s[r] == alph[i] || s[r] == '?')) {
@@ -33,6 +48,6 @@ void solve() {
 int main() {
     ios::sync_with_stdio(false);
     cin.tie(0);
-    solve();
+    solve2();
     return 0;
 }
