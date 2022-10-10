@@ -17,26 +17,32 @@ void solve2() {
     }
     int l = 0, r = 0;
     string s2;
+    int lCountInBool = 0, lCount = 0; 
     for(l; l < s.size() - 25; l++) {
-        int qCount = 0, lCount = 0; 
         s2 = s.substr(l, 26);
         for(r = l; r < l + 25; r++) {
             for(int i = 0; i < 26; i++) { 
                 if(s[r] == alph[i]) {
-                    lCount++;
                     if(isIncluded[i]) {
                         for(int i = 0; i < 26; i++) isIncluded[i] = false;
                         l = r;
                         isSolvable = false;
-                    } else isIncluded[i] = true;
+                    } else {
+                        lCount++;
+                        isIncluded[i] = true;
+                    }
                     break;
                 }
             }
         }
-        /*for(int i = 0; i < 26; i++) {
-            if(isIncluded[i]) lCount++;
-        }*/
-        // if(qCount == 26 - lCount) {
+        for(int i = 0; i < 26; i++) {
+            if(isIncluded[i]) {
+                lCountInBool++;
+            }
+        }
+        if(lCountInBool == lCount) {
+            isSolvable = true;
+        }
         if(!isSolvable) {
             continue;
         }
@@ -46,6 +52,7 @@ void solve2() {
                     if(!isIncluded[j]) {
                         s2[i] = alph[j];
                         isIncluded[j] = true;
+                        break;
                     }
                 }
             }
