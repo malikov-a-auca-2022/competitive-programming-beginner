@@ -16,7 +16,7 @@ void solve2() {
     int l = 0, r = 0;
     string s2;
     int lCountInBool = 0, lCount = 0; 
-    for(l; l < s.length() - 25; l++) {
+    for(l; l < s.length() - 24; l++) {
         s2 = s.substr(l, 26);
         for(r = l; r < l + 25; r++) {
             for(int i = 0; i < 26; i++) { 
