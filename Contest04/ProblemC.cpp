@@ -9,7 +9,6 @@ string cran = "ABABABBABAAAAAAAAAAAAABABABABAAAAAAAAAAAAABABABABADEFGHIMNOKLCSJB
 
 void solve2() {
     bool isIncluded[26] = {false};
-    bool isSolved = false;
     string s; cin >> s;
     if(s.length() < 26) {
         cout << "-1" << endl;
@@ -39,7 +38,6 @@ void solve2() {
             }
         }
         if(lCountInBool == lCount) {
-            isSolved = true;
             for(int i = 0; i < 26; i++) {
                 if(s2[i] == '?') {
                     for(int j = 0; j < 26; j++) {
