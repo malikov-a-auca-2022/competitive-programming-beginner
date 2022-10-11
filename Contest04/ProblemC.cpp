@@ -1,58 +1,61 @@
 #include <bits/stdc++.h>
-
+ 
 using namespace std;
-
+ 
 string alph = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-string alp2 = "ABCDEFGHIJKLMNOPQRSTUVWXYZX";
 string exmp = "ABABABBAB????????????ABABABABA???????????ABABABABA?????????KLCSJB?????????Z";
-string cran = "ABABABBABAAAAAAAAAAAAABABABABAAAAAAAAAAAAABABABABADEFGHIMNOKLCSJBPQRTUVWXYZ";
-
-void solve2() {
-    bool isIncluded[26] = {false};
+ 
+void solve() {
     string s; cin >> s;
-    if(s.length() < 26) {
-        cout << "-1" << endl;
+    if(s.size() < 26) {
+        cout << "-1";
+        return;
     }
-    int l = 0, r = 0;
-    string s2;
-    int lCountInBool = 0, lCount = 0; 
-    for(l; l < s.length() - 24; l++) {
-        s2 = s.substr(l, 26);
-        for(r = l; r < l + 25; r++) {
-            for(int i = 0; i < 26; i++) { 
+    bool shouldSkip, isIncluded[26];
+    int c, b, l, r; //c is counter of letters, b is counter of non-repeating letters, l is left, r is right 
+    for(l = 0; l < s.size() - 23; l++) { //23 yyyyy not 24
+        shouldSkip = false;
+        fill(begin(isIncluded), end(isIncluded), false);
+        c = 0, b = 0;
+        for(int r = l; r < l + 26; r++) { //calculate isIncluded // 26 yyyyy not 25
+            if(s[r] != '?') {
+                c++;
+            }
+            for(int i = 0; i < 26; i++) {
                 if(s[r] == alph[i]) {
-                    if(isIncluded[i]) {
-                        for(int i = 0; i < 26; i++) isIncluded[i] = false; //we need to move it
-                        l = r;
-                    } else {
-                        lCount++;
+                    if(!isIncluded[i]) {
                         isIncluded[i] = true;
+                    } else {
+                        l = r - 1; // r-1 because l++ at the end of iteration
+                        shouldSkip = true;
                     }
                     break;
                 }
             }
+            if(shouldSkip) {
+                break;
+            }
         }
         for(int i = 0; i < 26; i++) {
             if(isIncluded[i]) {
-                lCountInBool++;
+                b++;
             }
         }
-        if(lCountInBool == lCount) {
-            for(int i = 0; i < 26; i++) {
-                if(s2[i] == '?') {
+        if(b == c) {
+            for(int i = l; i < l + 26; i++) {
+                if(s[i] == '?') {
                     for(int j = 0; j < 26; j++) {
                         if(!isIncluded[j]) {
-                            s2[i] = alph[j];
+                            s[i] = alph[j];
                             isIncluded[j] = true;
                             break;
                         }
                     }
                 }
             }
-            s.replace(l, 26, s2);
             for(int i = 0; i < s.size(); i++) {
                 if(s[i] == '?') {
-                    s[i] == 'A';
+                    s[i] = 'A';
                 }
             }
             cout << s;
@@ -61,10 +64,11 @@ void solve2() {
     }
     cout << "-1";
 }
-
-int main() {
+ 
+int main()
+{
     ios::sync_with_stdio(false);
     cin.tie(0);
-    solve2();
+    solve();
     return 0;
 }
