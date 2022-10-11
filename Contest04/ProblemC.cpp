@@ -11,7 +11,7 @@ void solve2() {
     bool isIncluded[26] = {false};
     bool isSolved = false;
     string s; cin >> s;
-    if(s.size() < 26) {
+    if(s.length() < 26) {
         cout << "-1" << endl;
     }
     int l = 0, r = 0;
@@ -39,6 +39,7 @@ void solve2() {
             }
         }
         if(lCountInBool == lCount) {
+            isSolved = true;
             for(int i = 0; i < 26; i++) {
                 if(s2[i] == '?') {
                     for(int j = 0; j < 26; j++) {
@@ -56,12 +57,11 @@ void solve2() {
                     s[i] == 'A';
                 }
             }
-            isSolved = true;
-            break;
+            cout << s;
+            return;
         }
     }
-    if(isSolved) cout << s;
-    else cout << "-1";
+    cout << "-1";
 }
 
 int main() {
