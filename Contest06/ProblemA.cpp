@@ -28,6 +28,14 @@ void solve() {
         }
     }
     cout << v; // or f
+    // third way is 
+//     int i = 0;
+//     while(a[i] * 2 <= a[n - 1]) {
+//         i++;
+//         v--;
+//     }
+   //fourth way
+    //idk search up in codeforces
 }
 
 int main()
